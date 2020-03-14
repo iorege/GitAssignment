@@ -1,17 +1,17 @@
+import java.time.Instant;
 import java.util.Date;
 
-public class Budget {
+public class Budget implements Transaction {
 	private String type;
 	private Date transactionDate;
-	private Integer value;
+	private Float value;
 		
-	public Budget(String type, Date transactionDate, Integer value) {
+	public Budget(String type, Date transactionDate, float value) {
 		this.type = type;
 		this.transactionDate = transactionDate;
 		this.value = value;
 	}
-	
-	
+
 	public String getType() {
 		return type;
 	}
@@ -28,11 +28,19 @@ public class Budget {
 		this.transactionDate = transactionDate;
 	}
 	
-	public Integer getValue() {
+	public Float getValue() {
 		return value;
 	}
 	
-	public void setValue(Integer value) {
-		this.value = value;
+	public void setValue(float f) {
+		this.value = f;
 	}
+
+
+	@Override
+	public void addTransaction(Date date, Float value) {
+		setTransactionDate(date);
+		setValue(getValue() + value);
+	}
+	
 }
